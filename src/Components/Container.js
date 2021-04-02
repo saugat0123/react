@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Categories from './Categories';
+import Categories from '../Components/Categories';
 import Items from './Items';
-import Slider from './Slider';
+import Slider from '../Components/Slider';
 import Register from './Register';
 import Login from './Login';
 import Home from './Home'
@@ -17,9 +17,9 @@ class Container extends Component{
 
                 <div class="row">
 
-                    <div >
+                <div class="col-lg-3">
                     <Categories></Categories>
-                    </div>
+                </div>
                     
                 <div class="col-lg-9">
 

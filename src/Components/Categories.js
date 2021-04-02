@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Categories extends Component{
     render(){
         return(
-            <div class="col-lg-3">
+            <div>
 
                 <h1 class="my-4">Categories</h1>
                 <div class="list-group">
