@@ -1,7 +1,9 @@
-import { Component , state, changeHandle, submitUser, e} from "react";
+import { Component} from "react";
 import axios from 'axios';
+import {useHistory, Redirect} from 'react-router-dom'
 
 class Register extends Component{
+
     state = {
         firstName: "",
         lastName: "",
@@ -32,14 +34,14 @@ class Register extends Component{
         
         return (
             <div>
-                <form>
+                <form className="offset-sm-3">
                     <div class = "labelSignup">
                         <h2>Sign Up</h2>
                     </div>
 
                     <div class="mb-2">
                         <label for="fname" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="fname" name="firstName" value={this.state.firstName} onChange={this.changeHandle}/>
+                        <input type="text" class="form-control" id="fname"  name="firstName" value={this.state.firstName} onChange={this.changeHandle}/>
                     </div>
 
                     <div class="mb-2">
@@ -52,16 +54,16 @@ class Register extends Component{
                         <input type="text" class="form-control" id="email" name="email" value={this.state.email} onChange={this.changeHandle}/>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name = "password" value={this.state.password} onChange={this.changeHandle} />
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="address" class="form-label">Address</label>
                         <input type="password" class="form-control" id="address" name = "address" value={this.state.address} onChange={this.changeHandle}/>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="phone" class="form-label">Phone</label>
                         <input type="password" class="form-control" id="phone" name = "phone" value={this.state.phone} onChange={this.changeHandle}/>
                     </div>

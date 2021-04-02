@@ -13,8 +13,6 @@ class Container extends Component{
         return(
             <div class="container">
 
-            {/* <Slider></Slider> */}
-
                 <div class="row">
 
                 <div class="col-lg-3">
@@ -23,8 +21,6 @@ class Container extends Component{
                     
                 <div class="col-lg-9">
 
-                    {/* <Slider></Slider> */}
-                
                     <Route path = '/register' component = {Register} />
                     <Route path = '/login' component = {Login} />
                     <Route path = '/home' component = {Home} />
