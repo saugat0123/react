@@ -1,38 +1,27 @@
 import React, { Component } from 'react';
-import Categories from '../Components/Categories';
-import Items from './Items';
-import Slider from '../Components/Slider';
+
 import Register from './Register';
 import Login from './Login';
 import Home from './Home'
-import {Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import Items from './Items';
 
 
-class Container extends Component{
-    render(){
-        return(
-            <div class="container">
+class Container extends Component {
 
-                <div class="row">
+    render() {
+        return (
+            <div>
 
-                <div class="col-lg-3">
-                    <Categories></Categories>
-                </div>
-                    
-                <div class="col-lg-9">
+                <Route path='/' exact component={Home} />
+                <Route path='/register' component={Register} />
+                <Route path='/login' component={Login} />
+                <Route path='/foods' component={Items} />
+                {/* <Route path='/AddItem' component={AddItem} />
+                <Route path='/UpdateItem/:id' component={UpdateItem} />
+                <Route path='/Cart' component={Cart} /> */}
 
-                    <Route path = '/register' component = {Register} />
-                    <Route path = '/login' component = {Login} />
-                    <Route path = '/home' component = {Home} />
-
-                    <Items></Items>
-
-                    
-                </div>
-
-                </div>
-
-           </div>
+            </div>
         )
     }
 }

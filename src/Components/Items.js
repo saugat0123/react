@@ -1,56 +1,57 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'
+import axios from 'axios';
 
-class Items extends Component{
-    render(){
-        return(
-            <div className="row">
+class Items extends Component {
 
-                <div className="col-lg-4 col-md-6 mb-4">
-                    <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                        <a href="#">Item One</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                    </div>
-                </div>
+    state = {
+        items: []
+        // config:{
+        //     headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}
+        // }
+    }
 
-                <div className="col-lg-4 col-md-6 mb-4">
-                    <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                        <a href="#">Item Two</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                    </div>
-                </div>
+    componentDidMount() {
+        axios.get("http://localhost:3001/item/all")
+            .then((response) => {
+                this.setState({
+                    items: response.data
+                })
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+    }
 
-                <div className="col-lg-4 col-md-6 mb-4">
-                    <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                        <a href="#">Item Three</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                    </div>
+    // Deleteitem = (pid) => {
+    //     console.log(pid)
+    //     //axios.get("http://localhost:3001/item/all")  
+    // }
+
+    render() {
+        
+        return (
+            <div className="container">
+                <div className="row">
+                    {
+                        this.state.items.map((item) => {
+                            return (
+
+                                <div class="col-lg-4">
+                                    <div class="card h-80">
+                                        <img class="card-img-top" src={"http://localhost:3001/" + item.itemImage} alt="" style={{ height: "300px", width: "200px", marginLeft: "auto", marginRight: "auto" }} />
+                                        <div class="card-body">
+                                            <p>Name: {item.itemName}</p>
+                                            <p>Price: {item.itemPrice}</p>
+                                            <p>Type: {item.itemType}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            )
+                        })
+                    }
+
                 </div>
             </div>
         )

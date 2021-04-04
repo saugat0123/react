@@ -1,6 +1,6 @@
 import { Component } from "react";
 import axios from 'axios';
-import { useHistory, Redirect } from 'react-router-dom'
+// import { useHistory, Redirect } from 'react-router-dom'
 
 class Register extends Component {
 

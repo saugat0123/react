@@ -11,16 +11,11 @@ import Container from './Components/Container';
 
 function App() {
   return (
-    <div className="App">
       <BrowserRouter>
-      <Header></Header>
-      <Container></Container>
-      <Footer></Footer>
-
-
+        <Header></Header>
+        <Container></Container>
+        <Footer></Footer>
       </BrowserRouter>
-    </div>
-    
   );
 }
 
