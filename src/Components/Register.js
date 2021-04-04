@@ -35,7 +35,7 @@ class Register extends Component {
 
         return (
             <div>
-                <form className="offset-sm-3">
+                <form className="col-sm-5 offset-sm-3">
                     <div class="labelSignup">
                         <h2>Sign Up</h2>
                     </div>

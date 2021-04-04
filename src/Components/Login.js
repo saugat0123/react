@@ -24,6 +24,7 @@
             loginCheck: true
           })
           localStorage.setItem('token', response.data.token)
+          window.location.href='/'
         })
 
         .catch((err) => {
@@ -39,7 +40,7 @@
       }
       return (
         <div>
-          <form >
+          <form className="col-sm-5 offset-sm-3">
             <h3>Sign In</h3>
 
             <div class="mb-2">

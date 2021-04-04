@@ -31,12 +31,8 @@ class Home extends Component {
 
                 <div class="row">
                     {
-
-                        this.state.data.map((item) => {
-
+                       this.state.data.map((item) => {
                             return (
-
-
                                 <div class="col-lg-3">
                                     <div class="card h-100">
                                         <img class="card-img-top" src={"http://localhost:3001/" + item.itemImage} alt="" />
