@@ -24,6 +24,7 @@ class Register extends Component {
         axios.post('http://localhost:3001/register', this.state)
             .then((response) => {
                 console.log(response)
+                alert("User Registered!! Redirecting to Login Page!!")
                 window.location.assign('/login')
             })
             .catch((err) => {
@@ -35,7 +36,7 @@ class Register extends Component {
 
         return (
             <div>
-                <form className="col-sm-5 offset-sm-3">
+                <form className="col-sm-6 offset-sm-3 mx-20" id="signup">
                     <div class="labelSignup">
                         <h2>Sign Up</h2>
                     </div>
@@ -62,14 +63,14 @@ class Register extends Component {
 
                     <div class="mb-2">
                         <label for="address" class="form-label">Address</label>
-                        <input type="password" class="form-control" id="address" name="address" value={this.state.address} onChange={this.changeHandle} />
+                        <input type="text" class="form-control" id="address" name="address" value={this.state.address} onChange={this.changeHandle} />
                     </div>
                     <div class="mb-2">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="password" class="form-control" id="phone" name="phone" value={this.state.phone} onChange={this.changeHandle} />
+                        <input type="text" class="form-control" id="phone" name="phone" value={this.state.phone} onChange={this.changeHandle} />
                     </div>
 
-                    <button type="submit" class="btn btn-primary" onClick={this.submitUser}>Submit</button>
+                    <button type="submit" className="btn btn-primary" onClick={this.submitUser}>Submit</button>
                 </form>
             </div>
         )

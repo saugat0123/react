@@ -6,7 +6,9 @@ class Header extends Component {
 
   logout = () => {
     localStorage.removeItem('token')
-    localStorage.removeItem('id')
+    localStorage.removeItem('_id')
+    localStorage.removeItem('userType')
+    localStorage.removeItem('firstName')
     window.location.href = '/login'
 
   }
@@ -18,16 +20,19 @@ class Header extends Component {
         <>
           <Link to="/">Home</Link> |
           <Link to='/add/item'>Add Food</Link> |
-          <Link to='/item/all'>View Foods</Link> |
+          <Link to='/foods'>View Foods</Link> |
+          <Link to='/gallery'>Gallery</Link> |
           <Link to='/logout' onClick={this.logout}>Log Out</Link>
         </>
     }
     else if (localStorage.getItem('token') && localStorage.getItem('userType') == 'Customer') {
       var menu =
         <>
-          <Link to='/item/all'>View Foods</Link> |
-          <Link to='/me'>Profile</Link> |
           <Link to="/">Home</Link> |
+          <Link to='/foods'> Foods</Link> |
+          <Link to='/cart'> Cart</Link> |
+          <Link to='/profile'>{localStorage.getItem('firstName')}</Link> |
+
           <Link to='/logout' onClick={this.logout}>Log Out</Link>
         </>
     }
@@ -35,39 +40,20 @@ class Header extends Component {
       var menu =
         <>
           <Link to="/">Home</Link> |
-            <Link to="/register">Register</Link>  |
-            <Link to='/login'>Login</Link> |
-            <Link to='/item/all'>View Foods</Link> |
-            </>
+          <Link to='/foods'>Foods</Link> |
+          <Link to="/register">Register</Link>  |
+          <Link to='/login'>Login</Link> |
+        </>
     }
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="header">
         <div className="container">
-          <a className="navbar-brand" href="#">Royal Bhatti</a>
+          <a className="navbar-brand" href="/">Royal Bhatti</a>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="/">Home
-              {/* <span className="sr-only">(current)</span> */}
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/foods"> Foods</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/register">Register</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/login">Login</a>
-              </li>
-              {/* <li classNameName="nav-item"><a href="/Signup" classNameName="nav-link btnp" onClick={e => {
-                                    e.preventDefault();
-                                    // <Nav.Link title={this.state.user.firstName} href="/home">{this.state.user.firstName}</Nav.Link>
-                                    if(window.confirm('Are you sure you want to log out?')) {
-                                    localStorage.removeItem('token')
-                                    window.location.assign('/home')
-                                    }}}><h6>Logout</h6></a></li> */}
+              {menu}
             </ul>
           </div>
         </div>

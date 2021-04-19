@@ -24,6 +24,9 @@
             loginCheck: true
           })
           localStorage.setItem('token', response.data.token)
+          localStorage.setItem('userType', response.data.data.userType)
+          localStorage.setItem('_id', response.data.data._id)
+          localStorage.setItem('firstName', response.data.data.firstName)
           window.location.href='/'
         })
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
@@ -7,10 +7,11 @@ import Button from 'react-bootstrap/Button'
 class Items extends Component {
 
     state = {
-        items: []
-        // config:{
-        //     headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}
-        // }
+        items: [],
+        config:{
+            headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}
+        },
+        id:localStorage.getItem('_id')
     }
 
     componentDidMount() {
@@ -25,10 +26,29 @@ class Items extends Component {
             })
     }
 
-    // Deleteitem = (pid) => {
-    //     console.log(pid)
-    //     //axios.get("http://localhost:3001/item/all")  
-    // }
+    deleteMyItem=(proId)=>{
+        axios.delete('http://localhost:3001/delete/item/'+proId, this.state.config)
+        .then((response)=>{
+            console.log(response)
+            alert("Delete Item??")
+            window.location.href='/foods'
+        })
+        .catch((err)=>{
+            console.log(err.response)
+        })
+    }
+
+    addToCart =(pid)=>{
+
+        axios.post('http://localhost:3001/add/cart/'+pid,this.state.id,this.state.config)
+        .then((response)=>{
+        
+        alert("Added to cart")
+        })
+        .catch((err) => {
+            console.log(err.response)
+        })
+    }
 
     render() {
 
@@ -39,31 +59,22 @@ class Items extends Component {
                         this.state.items.map((item) => {
                             return (
 
-                                // <div className="col-lg-3">
-                                //     <div className="card h-80">
-                                //         <img className="card-img-top" src={"http://localhost:3001/" + item.itemImage} alt=""
-                                //             style={
-                                //                 { height: "200px", width: "220px", marginLeft: "10px"}
-                                //             }
-                                //         />
-                                //         <div className="card-body">
-                                //             <p>Name: {item.itemName}</p>
-                                //             <p>Price: {item.itemPrice}</p>
-                                //             <p>Type: {item.itemType}</p>
-                                //         </div>
-                                //     </div>
-                                // </div>
                                 <div class="col-lg-3">
-                                    <Card style={{ width: '18rem' }}>
-                                        <Card.Img variant="top" src={"http://localhost:3001/" + item.itemImage} />
-                                        <Card.Body>
-                                            <Card.Title>{item.itemName}</Card.Title>
-                                            <Card.Text>{item.itemPrice}</Card.Text>
-                                            <Card.Text>{item.itemType}</Card.Text>
-                                            <Button variant="primary">Add To Cart</Button>
-                                        </Card.Body>
-                                    </Card>
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src={"http://localhost:3001/" + item.itemImage} alt="" />
+                                        <div class="card-body">
+                                            <h4 class="card-title">{item.itemName}</h4>
+                                            <h4 class="card-title">{item.itemPrice}</h4>
+                                            <h4 class="card-title">{item.itemType}</h4>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="#" class="btn btn-primary">Add To Cart</a>
+                                            <p><button onClick={this.deleteMyItem.bind(this,item._id)}>Delete</button></p>
+                                            <p><button><Link to={'/update/food/'+item._id}>Update</Link></button></p>
+                                        </div>
+                                    </div>
                                 </div>
+                                
 
                             )
                         })
