@@ -40,10 +40,10 @@ class Items extends Component {
 
     addToCart =(pid)=>{
 
-        axios.post('http://localhost:3001/add/cart/'+pid,this.state.id,this.state.config)
+        axios.post('http://localhost:3001/cart/'+pid,this.state.id,this.state.config)
         .then((response)=>{
         
-        alert("Added to cart")
+        alert("Food added to cart")
         })
         .catch((err) => {
             console.log(err.response)
@@ -68,7 +68,7 @@ class Items extends Component {
                                             <h4 class="card-title">{item.itemType}</h4>
                                         </div>
                                         <div class="card-footer">
-                                            <a href="#" class="btn btn-primary">Add To Cart</a>
+                                        <p><button className="addtocartbutton" onClick={this.addToCart.bind(this,item._id)}>Add To Cart</button></p>
                                             <p><button onClick={this.deleteMyItem.bind(this,item._id)}>Delete</button></p>
                                             <p><button><Link to={'/update/food/'+item._id}>Update</Link></button></p>
                                         </div>

@@ -21,7 +21,6 @@ class Header extends Component {
           <Link to="/">Home</Link> |
           <Link to='/add/item'>Add Food</Link> |
           <Link to='/foods'>View Foods</Link> |
-          <Link to='/gallery'>Gallery</Link> |
           <Link to='/logout' onClick={this.logout}>Log Out</Link>
         </>
     }
