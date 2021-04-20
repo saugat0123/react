@@ -38,17 +38,41 @@ class Items extends Component {
         })
     }
 
-    addToCart =(pid)=>{
+    addtocart=(item_id)=> {
+        let fooditems=[];
+        fooditems=this.state.items;
+        fooditems.map(item => {
+            if(item._id===item_id){
+               let info={
+                productId:item._id,
+                seller: item.seller,
+                productPrice:item.itemPrice,
+                productName:item.itemName, 
+                productImage:item.itemImage,
+                quantity:1,
+                total:item.price
+               }
+               console.log(info);
+               console.log(this.state.config);
 
-        axios.post('http://localhost:3001/cart/'+pid,this.state.id,this.state.config)
-        .then((response)=>{
-        
-        alert("Food added to cart")
-        })
-        .catch((err) => {
-            console.log(err.response)
-        })
-    }
+               axios.post('http://localhost:3001/cart',info, this.state.config)
+               .then((response) => {
+                 
+                // this.setState({
+                //     clicked: true
+                //   })
+                  window.location.href='/cart'
+                  console.log(response)
+               })
+               .catch((err) => {
+                   console.log(err.response)
+               })
+            
+            }
+            
+        });
+
+  }
 
     render() {
 
@@ -68,7 +92,7 @@ class Items extends Component {
                                             <h4 class="card-title">{item.itemType}</h4>
                                         </div>
                                         <div class="card-footer">
-                                        <p><button className="addtocartbutton" onClick={this.addToCart.bind(this,item._id)}>Add To Cart</button></p>
+                                        <p><button className="addtocartbutton" onClick={this.addtocart.bind(this,item._id)}>Add To Cart</button></p>
                                             <p><button onClick={this.deleteMyItem.bind(this,item._id)}>Delete</button></p>
                                             <p><button><Link to={'/update/food/'+item._id}>Update</Link></button></p>
                                         </div>

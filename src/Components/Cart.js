@@ -5,9 +5,11 @@ class Cart extends Component{
 
 state={
 
-    data:[],config:{
+    data:[],
+    config:{
         headers:{"authorization":`Bearer ${localStorage.getItem('token')}`}
-    },total:0,product:[],total:0
+    },
+    total:0,product:[],total:0
 }
 
 changeHandle = (productId,e) => {

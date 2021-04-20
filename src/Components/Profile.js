@@ -5,7 +5,7 @@ import '../css/profile.css'
 class Profile extends Component {
 
     state = {
-        items: [],
+        items: {},
         config: {
             headers: { 'authorization': `Bearer ${localStorage.getItem('token')}` }
         },
@@ -14,6 +14,7 @@ class Profile extends Component {
 
     componentDidMount() {
         const id = localStorage.getItem('_id')
+        console.log(id)
         axios.get("http://localhost:3001/me/" + id)
             .then((response) => {
                 this.setState({
@@ -27,168 +28,55 @@ class Profile extends Component {
 
     render() {
         return (
-            <div class="container emp-profile">
+            <div class="row ">
+                <div class="col-lg-7 mx-auto">
+                    <div class="card mt-2 mx-auto p-4 bg-light">
+                        <div class="card-body bg-light">
+                            <div class="container">
+                                <form id="contact-form" role="form">
+                                    <div class="controls">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                              
+                                                            <div class="profile-img">
+                                                                <img src={"http://localhost:3001/" + this.state.items.photo} alt="" />
+                                                                <div class="file btn btn-lg btn-primary">
+                                                                    Change Photo
+                                                        <input type="file" name="file" />
+                                                                </div>
+                                                            </div>
+                                                      
+                                               
+                                            </div>
 
-
-
-                <form>
-                    <div class="row">
-
-                        {
-                            this.state.items.map((item) => {
-                                return (
-
-                                    <div class="col-md-4">
-                                        <div class="profile-img">
-                                            <img src={"http://localhost:3001/" + item.photo} alt="" />
-                                            <div class="file btn btn-lg btn-primary" id="profilechoose">
-                                                Change Photo
-                                <input type="file" name="file" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group"> <label for="form_name">Product Name *</label> <input onChange={this.changeHandler} value={this.state.items.firstName} name="itemName" class="form-control" placeholder="Please enter your product name *" required="required" data-error="Firstname is required." /> </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group"> <label for="form_email">Price of product *</label> <input onChange={this.changeHandler} value={this.state.itemPrice} name="itemPrice" class="form-control" placeholder="Please enter the price of product" /> </div>
+                                            </div>
 
-                                )
-                            })
-                        }
-                        <div class="col-md-6">
-                            <div class="profile-head">
-                                <h5>
-                                    Kshiti Ghelani
-                                    </h5>
-                                <h6>
-                                    Web Developer and Designer
-                                    </h6>
-                                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            {/* <div class="profile-work">
-                                <p>WORK LINK</p>
-                                <a href="">Website Link</a><br />
-                                <a href="">Bootsnipp Profile</a><br />
-                                <a href="">Bootply Profile</a>
-                                <p>SKILLS</p>
-                                <a href="">Web Designer</a><br />
-                                <a href="">Web Developer</a><br />
-                                <a href="">WordPress</a><br />
-                                <a href="">WooCommerce</a><br />
-                                <a href="">PHP, .Net</a><br />
-                            </div> */}
-                        </div>
-                        <div class="col-md-8">
-                            <div class="tab-content profile-tab" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>User Id</label>
                                         </div>
-                                        <div class="col-md-6">
-                                            <p>Kshiti123</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group"> <label for="form_email">Product Type *</label> <input onChange={this.changeHandler} value={this.state.pdesc} name="itemType" class="form-control" placeholder="Please enter the product description *" required="required" data-error="Description is required." /> </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " onClick={this.updatePro} value="Update Product" /> </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Name</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Kshiti Ghelani</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Email</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>kshitighelani@gmail.com</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Phone</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>123 456 7890</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Profession</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Web Developer and Designer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Experience</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Expert</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Hourly Rate</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>10$/hr</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Total Projects</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>230</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>English Level</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Expert</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Availability</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>6 months</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Your Bio</label><br />
-                                            <p>Your detail description</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </form>
-
-                        )
-                    })
-                }
+                </div>
             </div>
         )
     }
