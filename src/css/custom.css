@@ -366,3 +366,7 @@ label {
     margin-left: 10px;
     margin-right: 10px
 }
+
+.navbar-nav {
+	background-color: #33383b;
+}

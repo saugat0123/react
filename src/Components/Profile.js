@@ -37,39 +37,44 @@ class Profile extends Component {
                                     <div class="controls">
                                         <div class="row">
                                             <div class="col-md-6">
-                                              
-                                                            <div class="profile-img">
-                                                                <img src={"http://localhost:3001/" + this.state.items.photo} alt="" />
-                                                                <div class="file btn btn-lg btn-primary">
-                                                                    Change Photo
+
+                                                <div class="profile-img">
+                                                    <img src={"http://localhost:3001/" + this.state.items.photo} alt="" />
+                                                    <div class="file btn btn-lg btn-primary">
+                                                        Change Photo
                                                         <input type="file" name="file" />
-                                                                </div>
-                                                            </div>
-                                                      
-                                               
+                                                    </div>
+                                                </div>
+
+
                                             </div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group"> <label for="form_name">Product Name *</label> <input onChange={this.changeHandler} value={this.state.items.firstName} name="itemName" class="form-control" placeholder="Please enter your product name *" required="required" data-error="Firstname is required." /> </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group"> <label for="form_email">Price of product *</label> <input onChange={this.changeHandler} value={this.state.itemPrice} name="itemPrice" class="form-control" placeholder="Please enter the price of product" /> </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group"> <label for="form_email">Product Type *</label> <input onChange={this.changeHandler} value={this.state.pdesc} name="itemType" class="form-control" placeholder="Please enter the product description *" required="required" data-error="Description is required." /> </div>
-                                            </div>
-
+                                        <div class="mb-2">
+                                            <label for="fname" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="fname" name="firstName" value={this.state.items.firstName} onChange={this.changeHandle} />
                                         </div>
 
+                                        <div class="mb-2">
+                                            <label for="lname" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="lname" name="lastName" value={this.state.items.lastName} onChange={this.changeHandle} />
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" class="form-control" id="email" name="email" value={this.state.items.email} onChange={this.changeHandle} />
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="address" class="form-label">Address</label>
+                                            <input type="text" class="form-control" id="address" name="address" value={this.state.items.address} onChange={this.changeHandle} />
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <input type="text" class="form-control" id="phone" name="phone" value={this.state.items.phone} onChange={this.changeHandle} />
+                                        </div>
                                         <div class="row">
-                                            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " onClick={this.updatePro} value="Update Product" /> </div>
+                                            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " onClick={this.updatePro} value="Update" /> </div>
                                         </div>
                                     </div>
                                 </form>

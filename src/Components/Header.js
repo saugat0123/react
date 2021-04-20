@@ -18,19 +18,19 @@ class Header extends Component {
     if (localStorage.getItem('token') && localStorage.getItem('userType') == 'Admin') {
       var menu =
         <>
-          <Link to="/">Home</Link> |
-          <Link to='/add/item'>Add Food</Link> |
-          <Link to='/foods'>View Foods</Link> |
+          <Link to="/">Home &nbsp;&nbsp;</Link>
+          <Link to='/add/item'>Add Food&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+          <Link to='/foods'>View Foods&nbsp;&nbsp;&nbsp;&nbsp;</Link>
           <Link to='/logout' onClick={this.logout}>Log Out</Link>
         </>
     }
     else if (localStorage.getItem('token') && localStorage.getItem('userType') == 'Customer') {
       var menu =
         <>
-          <Link to="/">Home</Link> |
-          <Link to='/foods'> Foods</Link> |
-          <Link to='/cart'> Cart</Link> |
-          <Link to='/profile'>{localStorage.getItem('firstName')}</Link> |
+          <Link to="/">Home&nbsp;&nbsp;&nbsp;&nbsp;</Link> 
+          <Link to='/foods'> Foods&nbsp;&nbsp;&nbsp;&nbsp;</Link> 
+          <Link to='/cart'> Cart&nbsp;&nbsp;&nbsp;&nbsp;</Link> 
+          <Link to='/profile/:id'>{localStorage.getItem('firstName')}&nbsp;&nbsp;&nbsp;&nbsp;</Link> 
 
           <Link to='/logout' onClick={this.logout}>Log Out</Link>
         </>
@@ -38,10 +38,10 @@ class Header extends Component {
     else {
       var menu =
         <>
-          <Link to="/">Home</Link> |
-          <Link to='/foods'>Foods</Link> |
-          <Link to="/register">Register</Link>  |
-          <Link to='/login'>Login</Link> |
+          <Link to="/">Home&nbsp;&nbsp;&nbsp;&nbsp;</Link> 
+          <Link to='/foods'>Foods&nbsp;&nbsp;&nbsp;&nbsp;</Link> 
+          <Link to="/register">Register&nbsp;&nbsp;&nbsp;&nbsp;</Link>  
+          <Link to='/login'>Login&nbsp;&nbsp;&nbsp;&nbsp;</Link> 
         </>
     }
 
